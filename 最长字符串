@@ -1,0 +1,22 @@
+/*字典序排列
+字典序排列，也称为字母序排列，是一种字符串排序方式。对于两个不同的字符串，从左到右逐个比较它们的字符，如果在某个位置上它们的字符不同，
+则将它们按照该位置上的字符的字母顺序进行排序，即较小的字符排在前面，较大的字符排在后面。如果一直比较到其中一个字符串结束，则较短的字符串排在前面；
+如果两个字符串完全相同，则它们的字典序相同。可以将它们看作是按照字母表的顺序进行排列的。*/
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if (strs.length==0){
+            return "";
+        }
+        Arrays.sort(strs);
+        String first =strs[0];
+        String second=strs[strs.length-1];
+        int i;
+        int num=Math.min(first.length(),second.length());
+        for(i=0;i<num&&first.charAt(i)==second.charAt(i);i++);
+            String res =first.substring(0,i);
+//substring()方法是String类的一个方法，故该方法的调用者为String类的对象，即字符串。str.substring(indexStart,indexEnd)功能为：截取方法调用者（即str）的从indexStart到indexEnd（包括indexStart，不包括indexEnd；即含头不含尾、或左闭右开区间内的子字符串）
+            return res;
+    }
+}
+//  Arrays.sort(int[] a)表示对数组进行排序，且为从小到大进行排序
+//  Arrays.sort(int[] a, int fromIndex, int toIndex)对数组部分排序，也就是对数组a的下标从fromIndex到toIndex-1的元素排序，注意：下标为toIndex的元素不参与排序
