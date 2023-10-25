@@ -1,0 +1,18 @@
+/*使用双指针，定义一个快指针i和慢指针index，让快指针往前遍历，并且与慢指针指向的值进行比较，如果快指针指向的值和慢指针指向的值相等则不管，
+如果不相等则把慢指针加1，然后把快指针指向的值赋值给加1后的慢指针指向的值。最后返回慢指针加1即是nums数组中出现的唯一元素的个数（题给的是一个非严格递增数组，删除后要保证原来的顺序）
+*/
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int index=0;
+        if(nums.length==0){
+            return 0;
+        }
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]!=nums[index]){
+                index++;
+                nums[index]=nums[i];
+            }
+        }
+        return index+1;
+    }
+}
