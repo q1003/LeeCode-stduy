@@ -1,0 +1,40 @@
+/*
+快慢指针
+使用双指针，定义两个int型的变量代表左右指针，为了提高代码的可读性，最好使用left和right（下面是我写代码时候偷的懒，大家最好不要这样定义）
+让其中一个指针往前走（这里我们选择right）
+1.如果右指针的元素不等于val，则表示这是要输出的元素，我们便把右指针的元素赋值给左指针上，同时左右指针往前移动
+2.如果右指针的元素等于val，则表示这个元素不能输出，此时左指针不懂，右指针往前移动
+*/
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int index=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]!=val){
+                nums[index]=nums[i];
+                index++;
+            }
+        }
+        return index;
+    }
+}
+/*
+该题目说明元素的顺序可以改变，那么我们可以使用双指针中的碰撞指针来进行优化
+同样定义左右指针，分别指向数组开头和结尾（这里让左指针为开头，右指针为结尾），左指针往前遍历
+1.当左指针指向的元素等于val时，把右指针指向的元素赋值给左指针，右指针往前走一个，（注意这里左指针是没有动的，这样是为了防止右指针赋值过去的元素也等于val）
+2.当左指针指向的元素不等于val时，把左指针往前移动即可
+*/
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int left = 0;
+        int right = nums.length;
+        while (left < right) {
+            if (nums[left] == val) {
+                nums[left] = nums[right-1];
+                right--;
+            } else {
+                left++;
+            }
+        }
+        return left;
+    }
+}
