@@ -1,0 +1,29 @@
+/*
+方法一：直接暴力枚举，用两个for循环，第一个循环取一个元素与第二个循环取的元素一个一个对比，时间复杂度比较高为n^2
+方法二：用快排，时间复杂度为nlogn
+方法三：hash表，时间复杂度为n，空间复杂度也为n，不满足提议
+方法四：异或操作。异或运算的三大特性
+                任何数和0做异或运算，结果仍然是原来的数，即 a⊕0=aa \oplus 0=aa⊕0=a。
+                任何数和其自身做异或运算，结果是 0，即 a⊕a=0
+                异或运算满足交换律和结合律，即 a⊕b⊕a=b⊕a⊕a=b⊕(a⊕a)=b⊕0=b
+*/
+方法三实现：
+class Solution {
+    public int singleNumber(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (Integer i : nums) {
+            Integer count = map.get(i);
+            count = count == null ? 1 : ++count;
+            map.put(i, count);
+        }
+        for (Integer i : map.keySet()) {
+            Integer count = map.get(i);
+            if (count == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+方法四实现：
