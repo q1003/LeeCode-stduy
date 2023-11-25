@@ -3,6 +3,7 @@
 方法二：这个只针对于java和python具有高精度的运算
 */
 
+
 模拟代码实现：
 class Solution {
     public String addBinary(String a, String b) {
